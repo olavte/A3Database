@@ -163,7 +163,7 @@ class NJoin(OpBase):
         s2          = set(op2.schema)
         self.common = s1.intersection(s2)
         self.op_str = "$\Join_{{{0}}}$".format(','.join(self.common))
-        OpBase.__init__(self, op1.schema + filter(lambda x : x not in self.common, op2.schema), [op1,op2]) 
+        OpBase.__init__(self, op1.schema + list(filter(lambda x : x not in self.common, op2.schema)), [op1,op2]) 
         self.count_reads = True
         
     def __iter__(self):
